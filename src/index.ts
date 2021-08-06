@@ -3,6 +3,8 @@
 import { spawnSync } from "child_process";
 import { findPriority } from "./findPriority";
 
+export { findPriority } from "./findPriority";
+
 async function run(listenerArn: string, hostname: string) {
   const priority = await findPriority(listenerArn, hostname);
   console.log(priority);
