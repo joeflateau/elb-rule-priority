@@ -27,6 +27,17 @@ export async function findPriority(
   throw new Error("could not find a priority that was not in use");
 }
 
+export async function findPriorityOrFail(
+  listenerArn: string,
+  hostname: string
+): Promise<number> {
+  const priority = await findPriority(listenerArn, hostname);
+  if (priority == null) {
+    throw new Error(`unable to find suitable priority`);
+  }
+  return priority;
+}
+
 async function toArray<T>(asyncIterator: AsyncGenerator<T[]>) {
   const arr: T[] = [];
   for await (const i of asyncIterator) {
