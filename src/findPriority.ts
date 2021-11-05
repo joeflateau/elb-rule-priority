@@ -1,7 +1,10 @@
 import { ELBv2 } from "aws-sdk";
 import { DescribeRulesOutput } from "aws-sdk/clients/elbv2";
 
-export async function findPriority(listenerArn: string, hostname: string) {
+export async function findPriority(
+  listenerArn: string,
+  hostname: string
+): Promise<number | null> {
   const rules = await toArray(enumerateRules(listenerArn));
 
   const existingRule = rules?.find((r) =>
@@ -10,8 +13,8 @@ export async function findPriority(listenerArn: string, hostname: string) {
     )
   );
 
-  if (existingRule) {
-    return existingRule.Priority;
+  if (existingRule?.Priority != null) {
+    return Number(existingRule.Priority);
   }
 
   for (let i = 1; i < 5000; i++) {
