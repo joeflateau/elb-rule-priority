@@ -1,5 +1,6 @@
 import { ELBv2 } from "aws-sdk";
 import { DescribeRulesOutput } from "aws-sdk/clients/elbv2";
+import { range, shuffle } from "lodash";
 
 export async function findPriority(
   listenerArn: string,
@@ -17,7 +18,9 @@ export async function findPriority(
     return Number(existingRule.Priority);
   }
 
-  for (let i = 1; i < 5000; i++) {
+  const toTest = shuffle(range(1, 5000));
+  for (const i of toTest) {
+    for (let i = 1; i < 5000; i++) {}
     const isInUse = rules?.some((rule) => rule.Priority === String(i));
     if (!isInUse) {
       return i;

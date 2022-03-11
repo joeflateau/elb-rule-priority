@@ -201,6 +201,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/lodash@^4.14.179":
+  "integrity" "sha512-uwc1x90yCKqGcIOAT6DwOSuxnrAbpkdPsUOZtwrXb4D/6wZs+6qG7QnIawDuZWg0sWpxl+ltIKCaLoMlna678w=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.179.tgz"
+  "version" "4.14.179"
+
 "@types/mocha@^7.0.1":
   "integrity" "sha512-ZvO2tAcjmMi8V/5Z3JsyofMe3hasRcaw88cto5etSVMwVQfeivGAlEYmaQgceUSVYFofVjT+ioHsATjdWcFt1w=="
   "resolved" "https://registry.npmjs.org/@types/mocha/-/mocha-7.0.2.tgz"
