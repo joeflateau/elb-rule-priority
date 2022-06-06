@@ -18,12 +18,11 @@ export async function findPriority(
     return Number(existingRule.Priority);
   }
 
-  const toTest = shuffle(range(1, 5000));
-  for (const i of toTest) {
-    for (let i = 1; i < 5000; i++) {}
-    const isInUse = rules?.some((rule) => rule.Priority === String(i));
+  const shuffledPriorities = shuffle(range(1, 5000));
+  for (const priority of shuffledPriorities) {
+    const isInUse = rules?.some((rule) => rule.Priority === String(priority));
     if (!isInUse) {
-      return i;
+      return priority;
     }
   }
 
