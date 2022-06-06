@@ -16,7 +16,12 @@ if (require.main === module) {
   run(listenerArn, hostname);
 }
 
-export function getPrioritySync(listenerArn: string, hostname: string) {
+export function findPrioritySync(listenerArn: string, hostname: string) {
   const scriptPath = path.join(__dirname, "./index.js");
-  return Number(spawnSync(scriptPath, [listenerArn, hostname]).stdout);
+  const result = spawnSync(scriptPath, [listenerArn, hostname]);
+  const asNumber = Number(result.stdout.trim());
+  if (isNaN(asNumber)) {
+    throw new Error(`invalid result: ${result.stdout}`);
+  }
+  return asNumber;
 }
