@@ -22,7 +22,7 @@ export function findPrioritySync(listenerArn: string, hostname: string) {
     encoding: "utf8",
   });
   const asNumber = Number(result.stdout.trim());
-  if (isNaN(asNumber)) {
+  if (isNaN(asNumber) || asNumber === 0) {
     throw new Error(`invalid result: ${result.stdout}`);
   }
   return asNumber;
